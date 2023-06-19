@@ -179,7 +179,7 @@ private fun landscapeConstraints(margin: Dp): ConstraintSet{
         }
         constrain(challengeTxt){
             top.linkTo(nameText.bottom)
-            start.linkTo(nameText.start)
+            start.linkTo(nameText.start, margin = 10.dp)
             end.linkTo(nameText.end)
         }
         constrain(rowStats){
