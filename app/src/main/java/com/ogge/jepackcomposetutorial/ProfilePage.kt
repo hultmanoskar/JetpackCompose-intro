@@ -31,10 +31,14 @@ import androidx.constraintlayout.compose.Dimension
 
 @Composable
 fun ProfilePage() {
-    Card(elevation = 4.dp, modifier = Modifier
-        .fillMaxSize()
-        .padding(top = 100.dp, bottom = 100.dp, start = 14.dp, end = 14.dp)
-        .border(width = 2.dp, color = Color.Gray)) {
+    Card(
+    elevation = 4.dp, modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 10.dp, bottom = 200.dp, start = 14.dp, end = 14.dp)
+            .border(width = 2.dp, color = Color.Gray, shape = RoundedCornerShape(10.dp))
+            .layoutId("cardOne")
+    )
+    {
 
         BoxWithConstraints() {
             val constraints = if (minWidth < 600.dp) {
@@ -58,7 +62,8 @@ fun ProfilePage() {
                             width = 2.dp,
                             color = Color.Green,
                             shape = CircleShape
-                        ).layoutId("image"),
+                        )
+                        .layoutId("image"),
                     contentScale = ContentScale.Crop
                 )
 
@@ -124,6 +129,15 @@ private fun portraitConstrains(margin: Dp): ConstraintSet {
         val rowStats = createRefFor("rowStats")
         val buttonFirst = createRefFor("buttonFirst")
         val buttonSecond = createRefFor("buttonSecond")
+        val cardOne = createRefFor("cardOne")
+        val cardTwo = createRefFor("cardTwo")
+
+        constrain(cardTwo) {
+            top.linkTo(cardOne.top, margin = 50.dp)
+            start.linkTo(cardOne.start, margin = 10.dp)
+            end.linkTo(cardOne.end, margin = 10.dp)
+            bottom.linkTo(cardOne.bottom, margin = 10.dp)
+        }
 
         constrain(image){
             top.linkTo(parent.top, margin = 10.dp)
@@ -156,6 +170,7 @@ private fun portraitConstrains(margin: Dp): ConstraintSet {
             width = Dimension.wrapContent
         }
     }
+
 }
 
 private fun landscapeConstraints(margin: Dp): ConstraintSet{
