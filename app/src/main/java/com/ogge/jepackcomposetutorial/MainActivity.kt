@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ogge.jepackcomposetutorial.ui.theme.JepackComposeTutorialTheme
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     //Greeting(name = "")
-                    ProfilePage()
+                  //ProfilePagePreview()
+                    Startpage()
                 }
             }
         }

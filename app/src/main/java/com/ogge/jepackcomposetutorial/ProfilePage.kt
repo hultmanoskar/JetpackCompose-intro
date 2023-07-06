@@ -224,3 +224,4 @@ private fun landscapeConstraints(margin: Dp): ConstraintSet{
 fun ProfilePagePreview() {
     ProfilePage()
 }
+
