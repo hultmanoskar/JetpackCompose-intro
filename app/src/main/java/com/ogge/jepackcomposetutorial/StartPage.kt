@@ -12,6 +12,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.KeyboardArrowRight
+import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.colorResource
@@ -34,9 +36,10 @@ fun Startpage() {
     println("Starting......")
     println("Launch succeeded!!")
 
-    Column{
-
-
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ){
+        
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
@@ -46,17 +49,16 @@ fun Startpage() {
         ) {
             headlineTxt(headline = "Träna Ute")
 
-            Image(
-                painter = painterResource(id = R.drawable.rihanna),
-                contentDescription = "Rihanna jpg",
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(CircleShape)
-                    .border(2.dp, color = Color.Black, shape = CircleShape)
-            )
+            Icon(
+                Icons.Rounded.Person,
+                contentDescription = "User Icon",
+            modifier = Modifier.size(30.dp),
+                tint = colorResource(id = R.color.green2)
 
+                )
 
         }
+        
 
         Row(horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
@@ -64,11 +66,11 @@ fun Startpage() {
             .padding(horizontal = 10.dp)
 
             ) {
-            Text(text = "Bli inspirerad", fontSize = 15.sp, color = Color.Gray)
+            categoryText(category = "Bli inspirerad")
             Icon(
                 Icons.Rounded.KeyboardArrowRight,
                 contentDescription = stringResource(id = androidx.compose.ui.R.string.close_drawer),
-                modifier = Modifier, tint = Color.Green
+                modifier = Modifier, tint = colorResource(id = R.color.green2)
             )
         }
         /*Row() {
@@ -92,15 +94,15 @@ fun Startpage() {
                 }
             }
         }*/
-        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxSize()) {
+        Spacer(modifier = Modifier.padding(20.dp))
+        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
             Card(elevation = 4.dp, modifier = Modifier
-                .height(160.dp)
-                .width(140.dp), shape = RoundedCornerShape(10.dp)
+               , shape = RoundedCornerShape(10.dp)
             )
             {
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
+
                         .clip(shape = RoundedCornerShape(10.dp))
                 ) {
 
@@ -109,20 +111,18 @@ fun Startpage() {
                         painter = painterResource(id = R.drawable.rihanna),
                         contentDescription = "Wow",
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxHeight()
+                        modifier = Modifier
                     )
                     //Text(text = "Headline", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.Red)
 
                 }
             }
             Card(elevation = 4.dp, modifier = Modifier
-                .height(160.dp)
-                .width(140.dp), shape = RoundedCornerShape(10.dp)
+               , shape = RoundedCornerShape(10.dp)
             )
             {
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
                         .clip(shape = RoundedCornerShape(10.dp))
                 ) {
 
@@ -131,20 +131,18 @@ fun Startpage() {
                         painter = painterResource(id = R.drawable.rihanna),
                         contentDescription = "Wow",
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxHeight()
+                        modifier = Modifier
                     )
                     //Text(text = "Headline", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.Red)
 
                 }
             }
             Card(elevation = 4.dp, modifier = Modifier
-                .height(160.dp)
-                .width(140.dp), shape = RoundedCornerShape(10.dp)
+                , shape = RoundedCornerShape(10.dp)
             )
             {
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
                         .clip(shape = RoundedCornerShape(10.dp))
                 ) {
 
@@ -153,12 +151,26 @@ fun Startpage() {
                         painter = painterResource(id = R.drawable.rihanna),
                         contentDescription = "Wow",
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxHeight()
+                        //modifier = Modifier.fillMaxHeight()
                     )
                     //Text(text = "Headline", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.Red)
-
                 }
             }
+
+        }
+
+        Row(horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp)
+                .padding(top = 10.dp)) {
+            categoryText(category = "Högst rankade")
+
+            Icon(
+                Icons.Rounded.KeyboardArrowRight
+                , contentDescription = "Arrow icon",
+            tint = colorResource(id = R.color.green2)
+                )
         }
 
     }
@@ -167,4 +179,9 @@ fun Startpage() {
 @Composable
 fun headlineTxt(headline: String){
     Text(text = headline, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+}
+
+@Composable
+fun categoryText(category: String){
+    Text(text = category, fontSize = 15.sp, color = Color.Gray)
 }
