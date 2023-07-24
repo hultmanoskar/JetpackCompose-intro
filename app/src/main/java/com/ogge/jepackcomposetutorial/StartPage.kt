@@ -1,12 +1,9 @@
 package com.ogge.jepackcomposetutorial
 
 import android.os.Message
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -40,7 +37,9 @@ fun Startpage() {
     println("Launch succeeded!!")
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Transparent)
     ){
         
         Row(
@@ -50,7 +49,7 @@ fun Startpage() {
                 .padding(horizontal = 10.dp)
                 .padding(top = 10.dp)
         ) {
-            HeadlineTxt(headline = "Träna Ute")
+            HeadlineTxt(headline = "MovieBox")
 
             Icon(
                 Icons.Rounded.Person,
@@ -99,7 +98,9 @@ fun Startpage() {
             }
         }*/
 
-        Row(modifier = Modifier.horizontalScroll(rememberScrollState()).padding(horizontal = 10.dp)) {
+        Row(modifier = Modifier
+            .horizontalScroll(rememberScrollState())
+            .padding(horizontal = 10.dp)) {
             Card(elevation = 4.dp, modifier = Modifier
                 .size(width = 140.dp, height = 180.dp)
                 .padding(horizontal = 4.dp)
@@ -138,6 +139,38 @@ fun Startpage() {
             Card(elevation = 4.dp, modifier = Modifier
                 .size(width = 140.dp, height = 180.dp)
                 .padding(horizontal = 4.dp)
+                , shape = RoundedCornerShape(10.dp)
+            )
+            {
+                Box(
+                    modifier = Modifier
+                        .clip(shape = RoundedCornerShape(10.dp))
+                ) {
+
+
+                    Image(
+                        painter = painterResource(id = R.drawable.rihanna),
+                        contentDescription = "Wow",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                    )
+                    CardText(title = "Challenge 1")
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.BottomCenter)
+                            .padding(start = 4.dp, bottom = 20.dp)
+                    ) {
+
+
+                        CardTextSecond(title = "Example text")
+                    }
+
+                }
+            }
+            Card(elevation = 4.dp, modifier = Modifier
+                .size(width = 140.dp, height = 180.dp)
+                .padding(horizontal = 4.dp)
                , shape = RoundedCornerShape(10.dp)
             )
             {
@@ -169,6 +202,7 @@ fun Startpage() {
             }
             Card(elevation = 4.dp, modifier = Modifier
                 .size(width = 140.dp, height = 180.dp)
+                .clickable { println("Card pressed!") }
                 .padding(horizontal = 4.dp)
                 , shape = RoundedCornerShape(10.dp)
             )
@@ -214,6 +248,48 @@ fun Startpage() {
             tint = colorResource(id = R.color.green2)
                 )
         }
+        
+        Row(modifier = Modifier
+            .horizontalScroll(rememberScrollState())
+            .padding(horizontal = 10.dp))  {
+
+               Card(elevation = 4.dp, modifier = Modifier
+                   .size(width = 140.dp, height = 200.dp)
+                   .padding(horizontal = 4.dp)
+                   , shape = RoundedCornerShape(10.dp)
+               )
+               {
+                   Box(
+                       modifier = Modifier
+                           .clip(shape = RoundedCornerShape(10.dp))
+                   ) {
+
+
+                       Image(
+                           painter = painterResource(id = R.drawable.rihanna),
+                           contentDescription = "Wow",
+                           contentScale = ContentScale.Crop,
+                           modifier = Modifier
+                               .fillMaxSize()
+
+                       )
+                       CardRating(rating = "1")
+                       Box(
+                           modifier = Modifier
+                               .fillMaxWidth()
+                               .align(Alignment.BottomCenter)
+                               .padding(start = 4.dp, bottom = 20.dp)
+                       ) {
+
+
+                           MovieTitle(title = "Movie 1")
+                       }
+
+                   }
+               }
+
+        }
+        
 
     }
 }
@@ -247,6 +323,28 @@ fun CardTextSecond(title: String){
         modifier = Modifier
             .padding(horizontal = 5.dp)
     )
+}
+
+@Composable
+fun CardRating(rating: String) {
+    Text(text = rating, fontSize = 28.sp,
+    fontWeight = FontWeight.Bold,
+        color = Color.White,
+        modifier = Modifier
+            .padding(top = 5.dp)
+            .padding(horizontal = 5.dp)
+        )
+}
+
+@Composable
+fun MovieTitle(title: String){
+   Text(text = title, fontSize = 20.sp,
+   fontWeight = FontWeight.Bold,
+       color = Color.White,
+       modifier = Modifier
+           .padding(horizontal = 5.dp)
+   )
+    
 }
 
 
